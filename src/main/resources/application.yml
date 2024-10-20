@@ -8,3 +8,7 @@ server:
     key-alias: myapp
   compression:
     enabled: true
+spring:
+  messages:
+    basename: "messages,config.i18n.messages"
+    fallback-to-system-locale: false
