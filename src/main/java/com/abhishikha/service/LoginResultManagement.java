@@ -19,8 +19,8 @@ public class LoginResultManagement {
         );
 
         return "Login Timestamp: " + loginResult.loginTs()
-        + ", Auth Token: " + loginResult.authToken()
-        + ", Token Validity: " + loginResult.tokenValidity()
-        + ", Token Refresh URL: " + loginResult.tokenRefreshUrl();
+                + ", Auth Token: " + loginResult.authToken()
+                + ", Token Validity: " + loginResult.tokenValidity()
+                + ", Token Refresh URL: " + loginResult.tokenRefreshUrl();
     }
 }

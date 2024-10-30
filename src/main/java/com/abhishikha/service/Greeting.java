@@ -11,7 +11,7 @@ public class Greeting {
     @Autowired
     private MessageSource messageSource;
 
-    public String getGreeting(Locale locale){
+    public String getGreeting(Locale locale) {
         return messageSource.getMessage("greeting", null, locale) + ", " + messageSource.getMessage("welcome", null, locale) + " in " + messageSource.getMessage("location", null, locale);
     }
 }

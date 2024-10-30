@@ -23,22 +23,22 @@ public class Main {
     @Autowired
     private LoginResultManagement loginResultManagement;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
     }
 
     @GetMapping("/")
-    public String greet(){
+    public String greet() {
         return "Hello";
     }
 
     @GetMapping("/greeting")
-    public String getLocaleMessage(@RequestParam(value = "lang", defaultValue = "en") String lang){
+    public String getLocaleMessage(@RequestParam(value = "lang", defaultValue = "en") String lang) {
         return greeting.getGreeting(new Locale(lang));
     }
 
     @GetMapping("/user")
-    public String getUser(){
+    public String getUser() {
         return userManagement.getUser();
     }
 
