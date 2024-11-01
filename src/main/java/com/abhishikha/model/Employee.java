@@ -1,30 +1,42 @@
 package com.abhishikha.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Setter
 @Getter
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Employee {
     private @Id
     @GeneratedValue Long id;
     private String firstName;
     private String lastName;
     private String role;
+    private Boolean isActiveEmployee;
+
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime createdDate;
+
+    @LastModifiedDate
+    private LocalDateTime lastModifiedDate;
 
     Employee() {
     }
 
-    public Employee(String firstName, String lastName, String role) {
+    public Employee(String firstName, String lastName, String role, Boolean isActiveEmployee) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
+        this.isActiveEmployee = isActiveEmployee;
     }
 
     public String getName() {
