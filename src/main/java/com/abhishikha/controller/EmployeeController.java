@@ -1,5 +1,7 @@
 package com.abhishikha.controller;
 
+import com.abhishikha.NameOnly;
+import com.abhishikha.dto.EmployeeIdAndName;
 import com.abhishikha.repository.EmployeeRepository;
 import com.abhishikha.assembler.EmployeeModelAssembler;
 import com.abhishikha.exception.EmployeeNotFoundException;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -105,5 +108,20 @@ public class EmployeeController {
     @GetMapping("/employees/searchByFirstNameAndRole")
     public List<Employee> searchByFirstNameAndRole(@RequestParam String firstName, @RequestParam String role) {
         return employeeService.findEmployeeByFirstNameAndRole(firstName, role);
+    }
+
+    @GetMapping("/employees/searchByRoleWithProjection")
+    public Collection<NameOnly> searchByRoleWithProjection(@RequestParam String role) {
+        return employeeRepository.findByRole(role);
+    }
+
+    @GetMapping("/employees/findByFirstName")
+    public List<EmployeeIdAndName> findByFirstName(@RequestParam String firstName) {
+        return employeeRepository.findByFirstName(firstName);
+    }
+
+    @GetMapping("/employees/findByLastNameDynamicProjection")
+    public List<Employee> findByLastNameDynamicProjection(@RequestParam String lastName) {
+        return employeeRepository.findByLastName(lastName, Employee.class);
     }
 }

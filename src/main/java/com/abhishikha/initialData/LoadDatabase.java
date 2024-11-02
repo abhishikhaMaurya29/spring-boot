@@ -21,7 +21,7 @@ public class LoadDatabase {
             employeeRepository.save(new Employee("Namita", "Singh", "burglar", true));
             employeeRepository.save(new Employee("Lait", "Jaywalk", "admin", false));
             employeeRepository.save(new Employee("Lait", "okras", "admin", false));
-            employeeRepository.save(new Employee("Nabih", "tate", "admin", false));
+            employeeRepository.save(new Employee("Nabih", "okras", "admin", false));
             employeeRepository.save(new Employee("cayuse", "dews", "admin", false));
 
             employeeRepository.findAll().forEach(employee -> log.info("Preloaded {}", employee));
