@@ -29,7 +29,7 @@ public class Employee {
     @LastModifiedDate
     private LocalDateTime lastModifiedDate;
 
-    Employee() {
+    public Employee() {
     }
 
     public Employee(String firstName, String lastName, String role, Boolean isActiveEmployee) {

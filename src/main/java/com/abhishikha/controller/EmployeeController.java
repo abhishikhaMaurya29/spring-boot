@@ -4,6 +4,7 @@ import com.abhishikha.repository.EmployeeRepository;
 import com.abhishikha.assembler.EmployeeModelAssembler;
 import com.abhishikha.exception.EmployeeNotFoundException;
 import com.abhishikha.model.Employee;
+import com.abhishikha.service.EmployeeService;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
@@ -19,10 +20,12 @@ public class EmployeeController {
 
     private final EmployeeRepository employeeRepository;
     private final EmployeeModelAssembler assembler;
+    private final EmployeeService employeeService;
 
-    public EmployeeController(EmployeeRepository employeeRepository, EmployeeModelAssembler assembler) {
+    public EmployeeController(EmployeeRepository employeeRepository, EmployeeModelAssembler assembler, EmployeeService employeeService) {
         this.employeeRepository = employeeRepository;
         this.assembler = assembler;
+        this.employeeService = employeeService;
     }
 
 //    @GetMapping("/employees")
@@ -85,5 +88,22 @@ public class EmployeeController {
         employeeRepository.deleteById(id);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/employees/searchByRole")
+    public List<Employee> searchByRole(@RequestParam String role) {
+        return employeeService.findByExample(role);
+    }
+
+//    curl -vk -X GET https://localhost:8443/employees/searchByFirstName\?firstName\="Lait" | json_pp
+
+    @GetMapping("/employees/searchByFirstName")
+    public List<Employee> searchByFirstName(@RequestParam String firstName) {
+        return employeeService.findByFirstNameExample(firstName);
+    }
+
+    @GetMapping("/employees/searchByFirstNameAndRole")
+    public List<Employee> searchByFirstNameAndRole(@RequestParam String firstName, @RequestParam String role) {
+        return employeeService.findEmployeeByFirstNameAndRole(firstName, role);
     }
 }
