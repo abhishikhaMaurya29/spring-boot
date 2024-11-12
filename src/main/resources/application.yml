@@ -12,3 +12,10 @@ spring:
   messages:
     basename: "messages,config.i18n.messages"
     fallback-to-system-locale: false
+  security:
+    user:
+      name: "abhi"
+      password: "shikha"
+  datasource:
+    url: jdbc:postgresql://localhost:5432/abhishikhamaurya
+    username: abhishikhamaurya
